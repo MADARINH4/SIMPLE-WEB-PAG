@@ -6,7 +6,7 @@ export default function NoProjectSelected({ onStartAddProject }) {
     <div className="mt-24 text-center w-2/3">
       <img
         src={img}
-        alt="No project"
+        alt="no project"
         className="w-16 h-16 object-contain mx-auto"
       />
       <h2 className="my-4 text-sm font-bold uppercase text-stone-500">

@@ -8,16 +8,19 @@ export default function NewProject({ onSaveProject, onCancel }) {
   const title = useRef();
   const description = useRef();
   const date = useRef();
+  const image = useRef();
 
   function handleSave() {
     const enteredTitle = title.current.value;
     const enteredDescription = description.current.value;
     const enteredDate = date.current.value;
+    const enteredImage = image.current.value;
 
     if (
       enteredTitle.trim() === '' ||
       enteredDescription.trim() === '' ||
-      enteredDate.trim() === ''
+      enteredDate.trim() === '' ||
+      enteredImage.trim() === ''
     ) {
       modal.current.open();
       return;
@@ -26,6 +29,7 @@ export default function NewProject({ onSaveProject, onCancel }) {
       title: enteredTitle,
       description: enteredDescription,
       date: enteredDate,
+      image: enteredImage,
     });
   }
 
@@ -54,6 +58,7 @@ export default function NewProject({ onSaveProject, onCancel }) {
           <Input type="text" ref={title} label="Title" />
           <Input ref={description} label="Description" textarea />
           <Input type="date" ref={date} label="Due Date" />
+          <Input type="text" ref={image} label="Url Image" />
         </div>
       </div>
     </>
