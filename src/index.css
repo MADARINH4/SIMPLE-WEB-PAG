@@ -52,13 +52,27 @@
   transition: ease-out 0.5s;
   box-shadow: inset 0 0 0 0 #414141;
 }
+.button-red {
+  text-decoration: none;
+  color: #a5a5a5;
+  background: #313131;
+  transition: ease-out 0.5s;
+  box-shadow: inset 0 0 0 0 #414141;
+}
 
 .button-black:hover {
   color: #414141;
   box-shadow: inset 0 -100px 0 0 #ffffff;
 }
+.button-red:hover {
+  color: #414141;
+  box-shadow: inset 0 -100px 0 0 #bd3d3d;
+}
 
 .button-black:active {
+  transform: scale(0.9);
+}
+.button-red:active {
   transform: scale(0.9);
 }
 
@@ -111,8 +125,7 @@
   transform: rotateY(180deg);
 }
 
-.front-side,
-.back-side {
+.front-side {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -125,6 +138,19 @@
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 1rem;
   color: white;
+  box-shadow: 0 0 0.3em rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+}
+
+.back-side {
+  text-align: left;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1rem;
+  color: #a5a5a5;
   box-shadow: 0 0 0.3em rgba(255, 255, 255, 0.5);
   font-weight: 700;
 }

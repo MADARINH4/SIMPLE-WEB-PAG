@@ -44,7 +44,7 @@ export default function NewProject({ onSaveProject, onCancel }) {
       <div className="w-[35rem] mt-16">
         <menu className="flex items-center justify-end gap-4 my-4">
           <li>
-            <Button onClick={onCancel} white>
+            <Button onClick={onCancel} red>
               Cancel
             </Button>
           </li>

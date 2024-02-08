@@ -8,7 +8,32 @@ function App() {
   const [projectState, setProjectState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  function handleAddTask(text) {
+    setProjectState((prevState) => {
+      const taskId = Math.random();
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: taskId,
+      };
+      return {
+        ...prevState,
+        tasks: [newTask, ...prevState.tasks],
+      };
+    });
+  }
+
+  function handleDeleteTask(id) {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== id),
+      };
+    });
+  }
 
   function handleStartAddProject() {
     setProjectState((prevState) => {
@@ -48,6 +73,18 @@ function App() {
     });
   }
 
+  function handleDeleteProject() {
+    setProjectState((prevState) => {
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: prevState.projects.filter(
+          (project) => project.id !== prevState.selectedProjectId
+        ),
+      };
+    });
+  }
+
   function findProjectById() {
     return projectState.projects.find(
       (project) => project.id === projectState.selectedProjectId
@@ -69,7 +106,15 @@ function App() {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   } else if (projectState.selectedProjectId) {
     let projectSelected = findProjectById();
-    content = <ProjectCard project={projectSelected} />;
+    content = (
+      <ProjectCard
+        project={projectSelected}
+        onDeleteProject={handleDeleteProject}
+        onAddNewTask={handleAddTask}
+        onDeleteTask={handleDeleteTask}
+        tasks={projectState.tasks}
+      />
+    );
   }
 
   //Implementar o card da amostra de projetos
@@ -80,6 +125,7 @@ function App() {
         onStartAddProject={handleStartAddProject}
         onCatchProjectById={handleCatchProjectById}
         projects={projectState.projects}
+        selectedProjectId={projectState.selectedProjectId}
       />
       {/*<ProjectCard />*/}
       {content}

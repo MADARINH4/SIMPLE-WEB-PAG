@@ -4,6 +4,7 @@ export default function ProjectsSidebar({
   onStartAddProject,
   onCatchProjectById,
   projects,
+  selectedProjectId,
 }) {
   return (
     <aside className="sidebar w-1/3 px-8 py-16 rounded-r-xl md:w-72">
@@ -11,20 +12,33 @@ export default function ProjectsSidebar({
         Your projects
       </h2>
       <div>
-        <Button onClick={onStartAddProject}>+ Add Project</Button>
+        <Button black onClick={onStartAddProject}>
+          + Add Project
+        </Button>
       </div>
       <div>
         <ul className="mt-8">
-          {projects.map((project) => (
-            <li key={project.id}>
-              <button
-                onClick={() => onCatchProjectById(project.id)}
-                className="button-projects w-full text-left px-2 py-1 rounded-sm my-1"
-              >
-                {project.title}
-              </button>
-            </li>
-          ))}
+          {projects.map((project) => {
+            let cssClasses =
+              'button-projects w-full text-left px-2 py-1 rounded-sm my-1';
+
+            if (project.id === selectedProjectId) {
+              cssClasses += ' px-6';
+            } else {
+              cssClasses += ' px-2';
+            }
+
+            return (
+              <li key={project.id}>
+                <button
+                  onClick={() => onCatchProjectById(project.id)}
+                  className={cssClasses}
+                >
+                  {project.title}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </aside>

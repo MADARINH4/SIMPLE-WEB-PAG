@@ -1,19 +1,20 @@
 import { useRef } from 'react';
 import Input from './Input';
 import Button from './Button';
+import Tasks from './Tasks';
 
-export default function ProjectCard({ project }) {
-  const title = useRef();
-  const description = useRef();
-  const date = useRef();
-  const image = useRef();
-
-  function handleSave() {
-    const enteredTitle = title.current.value;
-    const enteredDescription = description.current.value;
-    const enteredDate = date.current.value;
-    const enteredImage = image.current.value;
-  }
+export default function ProjectCard({
+  project,
+  onDeleteProject,
+  onAddNewTask,
+  onDeleteTask,
+  tasks,
+}) {
+  const formattedDate = new Date(project.date).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 
   return (
     <div className="my-card w-full">
@@ -27,43 +28,28 @@ export default function ProjectCard({ project }) {
           className="front-side"
         >
           <p className="title uppercase">{project.title}</p>
-          <p>Hover Me</p>
+          <p className="title">Hover Me</p>
         </div>
-        <div className="back-side">
-          <div className="px-2 w-4/5">
-            <Input
-              type="text"
-              ref={title}
-              label="Title"
-              value={project.title}
-            />
-            <Input
-              ref={description}
-              label="Description"
-              textarea
-              value={project.description}
-            />
-            <Input
-              type="date"
-              ref={date}
-              label="Due Date"
-              value={project.date}
-            />
-            <Input
-              type="text"
-              ref={image}
-              label="Url Image"
-              value={project.image}
+        <div className="back-side p-4">
+          <div className="w-full my-16 ">
+            <header className="pb-4 mb-4 border-b-2 border-stone-300">
+              <div className="flex items-center justify-between">
+                <h1 className="text-3xl font-bold text-stone-400 mb-2">
+                  {project.title}
+                </h1>
+                <Button red onClick={onDeleteProject}>
+                  Delete
+                </Button>
+              </div>
+              <p className="mb-4 text-stone-600">{formattedDate}</p>
+              <p className="whitespace-pre-wrap">{project.description}</p>
+            </header>
+            <Tasks
+              onAddTask={onAddNewTask}
+              arrayTasks={tasks}
+              onDelete={onDeleteTask}
             />
           </div>
-          <menu className="flex items-center justify-end gap-4 my-4">
-            <li>
-              <Button white>Delete</Button>
-            </li>
-            <li>
-              <Button white>Save</Button>
-            </li>
-          </menu>
         </div>
       </div>
     </div>

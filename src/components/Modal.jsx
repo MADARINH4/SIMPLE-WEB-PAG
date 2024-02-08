@@ -20,7 +20,7 @@ const Modal = forwardRef(function Modal({ children, buttonCaption }, ref) {
     >
       {children}
       <form method="dialog" className="text-right">
-        <Button>{buttonCaption}</Button>
+        <Button black>{buttonCaption}</Button>
       </form>
     </dialog>,
     document.getElementById('modal-root')
