@@ -91,6 +91,12 @@ function App() {
     );
   }
 
+  /*function findTaskByProjectId() {
+    return projectState.tasks.find(
+      (task) => task.projectId === projectState.selectedProjectId
+    );
+  }*/
+
   let content;
 
   //console.log(projectState.selectedProjectId);
@@ -112,6 +118,7 @@ function App() {
         onDeleteProject={handleDeleteProject}
         onAddNewTask={handleAddTask}
         onDeleteTask={handleDeleteTask}
+        projectId={projectState.selectedProjectId}
         tasks={projectState.tasks}
       />
     );

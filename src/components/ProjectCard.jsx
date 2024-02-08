@@ -8,6 +8,7 @@ export default function ProjectCard({
   onDeleteProject,
   onAddNewTask,
   onDeleteTask,
+  projectId,
   tasks,
 }) {
   const formattedDate = new Date(project.date).toLocaleString('en-US', {
@@ -48,6 +49,7 @@ export default function ProjectCard({
               onAddTask={onAddNewTask}
               arrayTasks={tasks}
               onDelete={onDeleteTask}
+              id={projectId}
             />
           </div>
         </div>
