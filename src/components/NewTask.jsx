@@ -9,6 +9,7 @@ export default function NewTask({ onAdd }) {
   }
 
   function handleClick() {
+    //Add verification
     onAdd(enteredTask);
     setEnteredTask('');
   }
