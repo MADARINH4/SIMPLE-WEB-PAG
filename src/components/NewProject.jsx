@@ -1,9 +1,11 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import Button from './Button';
 import Input from './Input';
 import Modal from './Modal';
+import { ProjectContext } from '../store/project-context';
 
-export default function NewProject({ onSaveProject, onCancel }) {
+export default function NewProject() {
+  const { onSaveProject, onCancel } = useContext(ProjectContext);
   const modal = useRef();
   const title = useRef();
   const description = useRef();

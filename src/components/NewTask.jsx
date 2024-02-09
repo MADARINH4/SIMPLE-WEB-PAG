@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from './Button';
+import { ProjectContext } from '../store/project-context';
 
-export default function NewTask({ onAdd }) {
+export default function NewTask() {
+  const { onAddNewTask } = useContext(ProjectContext);
   const [enteredTask, setEnteredTask] = useState('');
 
   function handleChange(event) {
@@ -12,7 +14,7 @@ export default function NewTask({ onAdd }) {
     if (enteredTask.trim() === '') {
       return;
     }
-    onAdd(enteredTask);
+    onAddNewTask(enteredTask);
     setEnteredTask('');
   }
 

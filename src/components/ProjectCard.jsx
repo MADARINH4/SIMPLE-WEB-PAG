@@ -1,16 +1,10 @@
-import { useRef } from 'react';
-import Input from './Input';
+import { useContext } from 'react';
 import Button from './Button';
 import Tasks from './Tasks';
+import { ProjectContext } from '../store/project-context';
 
-export default function ProjectCard({
-  project,
-  onDeleteProject,
-  onAddNewTask,
-  onDeleteTask,
-  projectId,
-  tasks,
-}) {
+export default function ProjectCard({ project }) {
+  const { onDeleteProject } = useContext(ProjectContext);
   const formattedDate = new Date(project.date).toLocaleString('en-US', {
     year: 'numeric',
     month: 'short',
@@ -45,12 +39,7 @@ export default function ProjectCard({
               <p className="mb-4 text-stone-600">{formattedDate}</p>
               <p className="whitespace-pre-wrap">{project.description}</p>
             </header>
-            <Tasks
-              onAddTask={onAddNewTask}
-              arrayTasks={tasks}
-              onDelete={onDeleteTask}
-              id={projectId}
-            />
+            <Tasks />
           </div>
         </div>
       </div>
